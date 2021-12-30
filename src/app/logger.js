@@ -17,8 +17,8 @@ module.exports = {
             try {
                 const d = new Date();
                 const str = `${d.toISOString()} | ERROR | ${text} ${error}\r\n`;
-                console.error(str);
-                fs.appendFileSync(filePath, start);
+                console.log(str);
+                fs.appendFileSync(filePath, str);
             } catch (error) {
                 console.error(error);
             }
@@ -53,11 +53,11 @@ module.exports = {
                 const d = new Date();
                 fs.appendFileSync(filePath, `${d.toISOString()} | DOCUMENT | ${tm} | ${r}\r\n`);
             } catch (error) {
-                console.error(error);
+                console.log(error);
             }
 
             if(reply.shouldReply === true){
-                console.log(document);
+                //console.log(document);
             }
         };
     }
