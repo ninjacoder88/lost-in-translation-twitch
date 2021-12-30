@@ -23,8 +23,10 @@ module.exports = {
                             await database.setChannelStatusAsync(channel.channelName, "live");
                             logger.logInfo(`Set ${channel.channelName} to live`);
                         } else {
-                            await database.setChannelStatusAsync(channel.channelName, "off air");
-                            logger.logInfo(`Set ${channel.channelName} to off air`);
+                            if(channel.status !== "off air"){
+                                await database.setChannelStatusAsync(channel.channelName, "off air");
+                                logger.logInfo(`Set ${channel.channelName} to off air`);
+                            }
                         }
                     } catch (error) {
                         logger.logError(`Failed setting channel status for ${channel.channelName}`, error);
