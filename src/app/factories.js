@@ -1,7 +1,7 @@
 // TODO: refactor?
 const { NullCommand, TranslateCommand, HelpCommand, GetModeCommand, 
     GetLanguageCommand, SetModeCommand, SetLanguageCommand, 
-    SetUserCommand, SetReplyAsCommand } = require("./commands");
+    SetUserCommand, SetReplyAsCommand, HelloCommand } = require("./commands");
 const { IgnoreChatAction, TranslateChatAction, ModerateChatAction } = require("./chatActions");
 
 module.exports = {
@@ -27,6 +27,7 @@ module.exports = {
             // !litbot lang
             // !litbot help
             // !litbot translate
+            // !litbot hello
             if(splitMessageLength === 2){
                 const action = splitMessage[1];
     
@@ -39,6 +40,8 @@ module.exports = {
                         return new GetModeCommand(channelConfiguration);
                     case "lang":
                         return new GetLanguageCommand(twitchMessage.channel, channelConfiguration);
+                    case "hello":
+                        return new HelloCommand();
                     default:
                         return new NullCommand();
                 }
