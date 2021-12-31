@@ -34,7 +34,7 @@ module.exports = {
         };
 
         self.addApprovedUserAsync = async function(channelName, username){
-            const configuration = getCacheAsync(channelName);
+            const configuration = await getCacheAsync(channelName);
 
             if(!configuration){
                 return false;// not sure what to return;
@@ -47,7 +47,7 @@ module.exports = {
         };
 
         self.addChannelLanguageAsync = async function(channelName, languageCode){
-            const configuration = getCacheAsync(channelName);
+            const configuration = await getCacheAsync(channelName);
 
             if(!configuration){
                 return false;// not sure what to return;
@@ -87,7 +87,7 @@ module.exports = {
         };
 
         self.removeApprovedUserAsync = async function(channelName, username){
-            const configuration = getCacheAsync(channelName);
+            const configuration = await getCacheAsync(channelName);
 
             if(!configuration){
                 return false;// not sure what to return;
@@ -101,7 +101,7 @@ module.exports = {
         };
 
         self.removeChannelLanguageAsync = async function(channelName, langageCode){
-            const configuration = getCacheAsync(channelName);
+            const configuration = await getCacheAsync(channelName);
 
             if(!configuration){
                 return false;// not sure what to return;
@@ -115,7 +115,7 @@ module.exports = {
         };
 
         self.setChannelStatusAsync = async function(channelName, status){
-            const configuration = getCacheAsync(channelName);
+            const configuration = await getCacheAsync(channelName);
 
             if(!configuration){
                 return false;// not sure what to return;
@@ -128,7 +128,7 @@ module.exports = {
         };
 
         self.setChannelModeAsync = async function(channelName, mode){
-            const configuration = getCacheAsync(channelName);
+            const configuration = await getCacheAsync(channelName);
 
             if(!configuration){
                 return false;// not sure what to return;
@@ -141,7 +141,7 @@ module.exports = {
         };
 
         self.setReplyAsAsync = async function(channelName, replyAs){
-            const configuration = getCacheAsync(channelName);
+            const configuration = await getCacheAsync(channelName);
 
             if(!configuration){
                 return false;// not sure what to return;
