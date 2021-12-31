@@ -5,8 +5,9 @@ const { NullCommand, TranslateCommand, HelpCommand, GetModeCommand,
 const { IgnoreChatAction, TranslateChatAction, ModerateChatAction } = require("./chatActions");
 
 module.exports = {
-    BotCommandFactory: function(database){
+    BotCommandFactory: function(databaseProxy){
         const self = this;
+        const database = databaseProxy;
 
         self.provideCommand = function(twitchMessage, channelConfiguration){
             const formattedMessage = twitchMessage.message.toLowerCase().trim();
