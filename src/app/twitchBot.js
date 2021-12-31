@@ -97,7 +97,6 @@ module.exports = {
             });
 
             ircClient.on("message", (channel, messageContext, message, self) => {
-                logger.logInfo(message);
                 const twitchMessage = new TwitchMessage(channel, messageContext, message, self);
 
                 messageHandler.handleMessageAsync(ircClient, twitchMessage)
@@ -121,7 +120,7 @@ module.exports = {
                     .catch(error => {
                         logger.logError("", error);
                     });
-            }, 1000 * 60 * 60);
+            }, 1000 * 60 * 30);
 
             setInterval(function(){
                 joinChannelsAsync(ircClient)
