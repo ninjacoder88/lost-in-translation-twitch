@@ -9,7 +9,7 @@ const { MessageHandler } = require("./messageHandler");
 const { BotCommandFactory, ChatActionFactory } = require("./factories");
 const { TranslationServiceClientProxy } = require("./translationServiceClientProxy");
 
-const logger = new Logger("./logs/log.log");
+const logger = new Logger("./logs/");
 const credentialLoader = new CredentialLoader("./secrets/litbot-credentials.json", logger);
 
 const credentials = credentialLoader.loadCredentials();

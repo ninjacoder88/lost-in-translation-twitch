@@ -1,13 +1,27 @@
 const fs = require("fs");
 
 module.exports = {
-    Logger: function(filePath){
+    Logger: function(folderPath){
         const self = this;
+        const folder = folderPath;
+
+        function getFileName(today){
+            const year = today.getFullYear();
+            const month = today.getMonth() + 1;
+            const dayOfMonth = today.getDate();
+
+            const yearStr = year.toString();
+            const monthStr = month.toString().padStart(2, "0");
+            const domStr = dayOfMonth.toString().padStart(2, "0");
+
+            return `${folder}${yearStr}${monthStr}${domStr}.log`;
+        };
 
         self.logInfo = function(text){
             try {
                 const d = new Date();
-                fs.appendFileSync(filePath, `${d.toISOString()} | INFO | ${text}\r\n`);
+                const fileName = getFileName(d);
+                fs.appendFileSync(fileName, `${d.toISOString()} | INFO | ${text}\r\n`);
             } catch (error) {
                 console.error(error);
             }
@@ -16,9 +30,10 @@ module.exports = {
         self.logError = function(text, error){
             try {
                 const d = new Date();
+                const fileName = getFileName(d);
                 const str = `${d.toISOString()} | ERROR | ${text} ${error}\r\n`;
-                console.log(str);
-                fs.appendFileSync(filePath, str);
+                //console.log(str);
+                fs.appendFileSync(fileName, str);
             } catch (error) {
                 console.error(error);
             }
@@ -51,7 +66,8 @@ module.exports = {
                 const tm = `${twitchMessage.channel} | ${twitchMessage.username} | ${twitchMessage.message} |  ${twitchMessage.isMod} | ${twitchMessage.isSubscriber} | ${twitchMessage.isVip} | ${twitchMessage.isFounder}`;
                 const r = `${reply.isModCommand} | ${reply.shouldReply} | ${reply.text} | ${reply.language} | ${reply.translation} | ${reply.sampledMessage} | ${reply.debug}`;
                 const d = new Date();
-                fs.appendFileSync(filePath, `${d.toISOString()} | DOCUMENT | ${tm} | ${r}\r\n`);
+                const fileName = getFileName(d);
+                fs.appendFileSync(fileName, `${d.toISOString()} | DOCUMENT | ${tm} | ${r}\r\n`);
             } catch (error) {
                 console.log(error);
             }
