@@ -8,6 +8,7 @@ module.exports = {
         self.replyAs = document.replyAs;
         self.enabled = document.enabled;
         self.status = document.status;
+        self.approvedWords = document.approvedWords;
         self.cacheDate = new Date();
     },
     Credentials: function(jsonObject){
@@ -34,7 +35,6 @@ module.exports = {
         self.isSubscriber = self.messageContext.subscriber;
 
         self.emoteOnly = self.messageContext["emote-only"] === true;
-        self.messageWithoutEmotes = removeEmotes(self.message);
 
         self.badges = self.messageContext.badges === undefined ? {} : self.messageContext.badges;
 
@@ -43,26 +43,6 @@ module.exports = {
         self.isFounder = self.badges ? self.badges["founder"] === "1" : false;
 
         self.canRunModCommands = self.isMod === true || self.isBroadcaster === true;
-
-        function removeEmotes(messageToCheck){
-            if(!messageContext.emotes){
-                return messageToCheck;
-            }
-
-            const fullMessage = messageToCheck.split("");
-            //console.log({messageToCheck: messageToCheck});
-            for(let [id, positions] of Object.entries(messageContext.emotes)){
-                positions.reverse().forEach(position => {
-                    const splitPositions = position.split("-");
-                    const startIndex = parseInt(splitPositions[0]);
-                    const endIndex = parseInt(splitPositions[1]);
-                    const length = endIndex - startIndex + 1;
-                    fullMessage.splice(startIndex, length);
-                });
-            }
-
-            return fullMessage.join("");
-        }
     },
     CommandReply: function(shouldReply, text){
         const self = this;
