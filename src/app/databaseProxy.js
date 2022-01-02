@@ -46,6 +46,19 @@ module.exports = {
             }
         };
 
+        self.addApprovedWordAsync = async function(channelName, word){
+            const configuration = await getCacheAsync(channelName);
+
+            if(!configuration){
+                return false;// not sure what to return;
+            }
+
+            if(configuration.approvedWords.indexOf(word) === -1){
+                await mongoClientProxy.addApprovedWordAsync(channelName, word);
+                cache[channelName].approvedWords.push(word);
+            }
+        };
+
         self.addChannelLanguageAsync = async function(channelName, languageCode){
             const configuration = await getCacheAsync(channelName);
 
@@ -97,6 +110,20 @@ module.exports = {
             if(index !== -1){
                 await mongoClientProxy.removeApprovedUserAsync(channelName, username);
                 cache[channelName].approvedUsers.splice(index, 1);
+            }
+        };
+
+        self.removeApprovedWordAsync = async function(channelName, word){
+            const configuration = await getCacheAsync(channelName);
+
+            if(!configuration){
+                return false;// not sure what to return;
+            }
+
+            const index = configuration.approvedWords.indexOf(word);
+            if(index !== -1){
+                await mongoClientProxy.removeApprovedWordAsync(channelName, word);
+                cache[channelName].approvedWords.splice(index, 1);
             }
         };
 

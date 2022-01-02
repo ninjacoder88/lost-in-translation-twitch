@@ -32,6 +32,14 @@ module.exports = {
             });
         };
 
+        self.addApprovedWordAsync = async function(channelName, word){
+            await updateChannelAsync(channelName, {
+                $push: {
+                    "approvedWords": word
+                }
+            });
+        };
+
         self.addChannelConfigurationAsync = async function(channelName){
             try {
                 await client.connect();
@@ -46,6 +54,7 @@ module.exports = {
                     status: "off air",
                     languages: [],
                     approvedUsers: [],
+                    approvedWords: [],
                     enabled: true
                 }
         
@@ -107,6 +116,14 @@ module.exports = {
             await updateChannelAsync(channelName, {
                 $pull: {
                     "approvedUsers": username
+                }
+            });
+        };
+
+        self.removeApprovedWordAsync = async function(channelName, word){
+            await updateChannelAsync(channelName, {
+                $pull: {
+                    "approvedWords": word
                 }
             });
         };
