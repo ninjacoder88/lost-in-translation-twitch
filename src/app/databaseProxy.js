@@ -1,4 +1,4 @@
-const { ChannelConfiguration } = require("./models");
+const { ChannelConfiguration } = require("./Models/ChannelConfiguration");
 
 module.exports = {
     DatabaseProxy: function(mongoClientProxy){

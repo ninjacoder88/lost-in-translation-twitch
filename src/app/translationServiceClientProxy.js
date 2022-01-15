@@ -1,5 +1,6 @@
 const { TranslationServiceClient } = require("@google-cloud/translate");
-const { TranslationResult, DetectionResult } = require("./models");
+const { TranslationResult } = require("./Models/TranslationResult");
+const { DetectionResult } = require("./Models/DetectionResult");
 
 module.exports = {
     TranslationServiceClientProxy: function(projectId, logger){
