@@ -8,8 +8,10 @@ module.exports = {
             }
 
             const emotePositions = [];
-            for(let [id, positions] of Object.entries(twitchMessage.emotes)){
-                emotePositions.push(positions);
+            for(let [id, positionArray] of Object.entries(twitchMessage.emotes)){
+                positionArray.forEach(position => {
+                    emotePositions.push(position);
+                })
             }
 
             if(emotePositions.length === 0){
