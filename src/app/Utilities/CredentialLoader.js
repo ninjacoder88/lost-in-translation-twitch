@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { Credentials } = require("./models");
+const { Credentials } = require("../Models/Credentials");
 
 module.exports = {
     CredentialLoader: function(filePath, logger){
