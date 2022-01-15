@@ -26,25 +26,25 @@ describe("MessageSanitizer", function(){
 
         it("should remove emotes at beginning of message returning remaining text", function(){
             const message = "twitchHello hello this is only a test";
-            const result = SUT.removeEmotes({message: message, emotes: {1: "0-11"}});
+            const result = SUT.removeEmotes({message: message, emotes: {1: ["0-11"]}});
             assert.equal(result, "hello this is only a test");
         });
 
         it("should remove emotes at end of message returning remaining text", function(){
             const message = "hello this is only a test twitchHello";
-            const result = SUT.removeEmotes({message: message, emotes: {1: "26-37"}});
+            const result = SUT.removeEmotes({message: message, emotes: {1: ["26-37"]}});
             assert.equal(result, "hello this is only a test");
         });
 
         it("should remove emotes in the middle of message returning remaining text", function(){
             const message = "hello twitchHello this is only a test";
-            const result = SUT.removeEmotes({message: message, emotes: {1: "6-17"}});
+            const result = SUT.removeEmotes({message: message, emotes: {1: ["6-17"]}});
             assert.equal(result, "hello this is only a test");
         });
 
         it("should remove all emotes from message leaving only text", function(){
             const message = "twitchHello hello twitchHello this is only a test twitchHello";
-            const result = SUT.removeEmotes({message: message, emotes: {1: "0-11", 2: "18-29", 3: "50-61"}});
+            const result = SUT.removeEmotes({message: message, emotes: {1: ["0-11", "18-29"], 2: ["50-61"]}});
             assert.equal(result, "hello this is only a test");
         });
     });
