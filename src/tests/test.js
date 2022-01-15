@@ -1,9 +1,9 @@
-const { MongoClientProxy } = require("./app/mongoClientProxy");
-const { Logger } = require("./app/logger");
-const { CredentialLoader } = require("./app/credentialLoader");
-const { DatabaseProxy } = require("./app/databaseProxy");
-const { TwitchApiProxy } = require("./app/twitchApiProxy");
-const databaseProxy = require("./app/databaseProxy");
+const { MongoClientProxy } = require("../app/mongoClientProxy");
+const { Logger } = require("../app/logger");
+const { CredentialLoader } = require("../app/credentialLoader");
+const { DatabaseProxy } = require("../app/databaseProxy");
+const { TwitchApiProxy } = require("../app/twitchApiProxy");
+const databaseProxy = require("../app/databaseProxy");
 
 const l = new Logger("log.log");
 const cl = new CredentialLoader("./app/secrets/litbot-credentials.json", l);

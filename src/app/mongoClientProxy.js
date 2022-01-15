@@ -159,5 +159,30 @@ module.exports = {
                 }
             });
         };
+
+        self.logTranslationAsync = async function(channelName, username, message, sample, language, translation, time){
+            try {
+                await client.connect();
+    
+                const database = client.db("LostInTranslation");
+                const collection = database.collection("TranslationLog");
+    
+                const document = {
+                    channelName: channelName,
+                    username: username, 
+                    message: message, 
+                    sample: sample,
+                    language: language,
+                    translation: translation,
+                    time: time
+                };
+        
+                await collection.insertOne(document);
+            } catch (error) {
+                logger.logError("", error);
+            } finally {
+                await client.close();
+            }
+        };
     }
 };

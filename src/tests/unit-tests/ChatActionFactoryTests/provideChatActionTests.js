@@ -24,9 +24,13 @@ function Test(){
             approvedUsers: [],
             approvedWords: ["hola", "delirya"]
         };
-        const twitchMessage = {
+        /*const twitchMessage = {
             message: "hola, twitchHola how are you delirya twitchWave today. http://website.com look at this",
             emotes: {1: "6-16", 2: "37-47"}
+        };*/
+        const twitchMessage =  {
+            message: "I'm an artist skrinkSummheart",
+            emotes: {1: "14-30"}
         };
         const channelConfiguration = new ChannelConfiguration(document);
 
