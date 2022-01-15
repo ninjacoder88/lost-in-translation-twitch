@@ -1,4 +1,4 @@
-const { TwitchMessage } = require("./models");
+const { TwitchMessage } = require("./Models/TwitchMessage");
 
 module.exports = {
     TwitchBot: function(twitchMessagingInterface, botLogger, databaseProxy, twitchApiProxy, twitchMessageHandler){
