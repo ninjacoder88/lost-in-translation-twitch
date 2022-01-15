@@ -10,6 +10,7 @@ module.exports = {
         self.username = self.messageContext.username;
         self.isMod = self.messageContext.mod;
         self.isSubscriber = self.messageContext.subscriber;
+        self.emotes = self.messageContext.emotes;
 
         self.emoteOnly = self.messageContext["emote-only"] === true;
 
