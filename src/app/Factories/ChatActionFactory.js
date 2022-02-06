@@ -11,27 +11,31 @@ module.exports = {
                 return new IgnoreChatAction("mode is off");
             }
 
-            if(twitchMessage.isMod === true){
+            const translateUser = channelConfiguration.translateUsers.indexOf(twitchMessage.username) !== -1;
+
+            if(twitchMessage.isMod === true && translateUser === false){
                 return new IgnoreChatAction("chat by mod");
             }
 
-            if(twitchMessage.isBroadcaster === true){
+            if(twitchMessage.isBroadcaster === true && translateUser === false){
                 return new IgnoreChatAction("chat by broadcaster");
             }
 
-            if(twitchMessage.isSubscriber === true){
+            if(twitchMessage.isSubscriber === true && translateUser === false){
                 return new IgnoreChatAction("chat by subscriber");
             }
 
-            if(twitchMessage.isVip === true){
+            if(twitchMessage.isVip === true && translateUser === false){
                 return new IgnoreChatAction("chat by vip");
             }
 
-            if(twitchMessage.isFounder === true){
+            if(twitchMessage.isFounder === true && translateUser === false){
                 return new IgnoreChatAction("chat by founder");
             }
 
-            if(channelConfiguration.approvedUsers.indexOf(twitchMessage.username) !== -1){
+            const approvedUser = channelConfiguration.approvedUsers.indexOf(twitchMessage.username) !== -1;
+
+            if(approvedUser === true && translateUser === false){
                 return new IgnoreChatAction("chat by approved user");
             }
 

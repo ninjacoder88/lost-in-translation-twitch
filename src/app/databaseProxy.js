@@ -72,6 +72,19 @@ module.exports = {
             }
         };
 
+        self.addTranslateUserAsync = async function(channelName, username){
+            const configuration = await getCacheAsync(channelName);
+
+            if(!configuration){
+                return false;// not sure what to return;
+            }
+
+            if(configuration.translateUsers.indexOf(username) === -1){
+                await mongoClientProxy.addTranslateUserAsync(channelName, username);
+                cache[channelName].translateUsers.push(username);
+            }
+        };
+
         self.getCache = function(){
             return cache;
         };
@@ -110,6 +123,20 @@ module.exports = {
             if(index !== -1){
                 await mongoClientProxy.removeApprovedUserAsync(channelName, username);
                 cache[channelName].approvedUsers.splice(index, 1);
+            }
+        };
+
+        self.removeTranslateUserAsync = async function(channelName, username){
+            const configuration = await getCacheAsync(channelName);
+
+            if(!configuration){
+                return false;// not sure what to return;
+            }
+
+            const index = configuration.translateUsers.indexOf(username);
+            if(index !== -1){
+                await mongoClientProxy.removeTranslateUserAsync(channelName, username);
+                cache[channelName].translateUsers.splice(index, 1);
             }
         };
 

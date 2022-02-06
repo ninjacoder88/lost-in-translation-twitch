@@ -76,6 +76,8 @@ module.exports = {
             // !litbot lang remove en
             // !litbot user add username
             // !litbot user remove username
+            // !litbot user translate-on username
+            // !litbot user translate-off username
             // !litbot word add XYZ
             if(splitMessageLength === 4){
                 const action = splitMessage[1];

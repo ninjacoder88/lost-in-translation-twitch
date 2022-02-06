@@ -40,6 +40,14 @@ module.exports = {
             });
         };
 
+        self.addTranslateUserAsync = async function(channelName, username){
+            await updateChannelAsync(channelName, {
+                $push: {
+                    "translateUsers": username
+                }
+            });
+        };
+
         self.addChannelConfigurationAsync = async function(channelName){
             try {
                 await client.connect();
@@ -116,6 +124,14 @@ module.exports = {
             await updateChannelAsync(channelName, {
                 $pull: {
                     "approvedUsers": username
+                }
+            });
+        };
+
+        self.removeTranslateUserAsync = async function(channelName, username){
+            await updateChannelAsync(channelName, {
+                $pull: {
+                    "translateUsers": username
                 }
             });
         };

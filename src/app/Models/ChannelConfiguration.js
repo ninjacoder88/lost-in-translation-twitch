@@ -10,5 +10,6 @@ module.exports = {
         self.status = document.status;
         self.approvedWords = document.approvedWords;
         self.cacheDate = new Date();
+        self.translateUsers = document.translateUsers;
     }
 }
